@@ -3,19 +3,24 @@ import { ref } from 'vue'
 
 import Todo from '../components/Todo.vue'
 
+const storedTodos = JSON.parse(localStorage.getItem('@TodosApp:todos')) || []
+
+console.log(storedTodos)
+
 const title = ref('')
 const done = ref(true)
-const todos = ref([])
+let todos = ref(storedTodos)
 
 function handleAddTodo (event) {
   event.preventDefault()
   todos.value.push({title: title.value, done: false})
+  localStorage.setItem('@TodosApp:todos', JSON.stringify(todos.value))
   title.value = ''
 }
 
 function handleDeleteTodo (event) {
-  const index = todos.value.findIndex((todo) => todo.title = event.title)
-  todos.value.splice(index, 1)
+  todos.value = todos.value.filter((todo) => todo.title !== event.title)
+  localStorage.setItem('@TodosApp:todos', JSON.stringify(todos.value))
 }
 
 </script>
