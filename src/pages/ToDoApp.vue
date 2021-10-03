@@ -10,6 +10,7 @@ const todos = ref([])
 function handleAddTodo (event) {
   event.preventDefault()
   todos.value.push({title: title.value, done: false})
+  title.value = ''
 }
 
 function handleDeleteTodo (event) {
