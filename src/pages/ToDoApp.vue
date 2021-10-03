@@ -12,6 +12,11 @@ function handleAddTodo (event) {
   todos.value.push({title: title.value, done: false})
 }
 
+function handleDeleteTodo (event) {
+  const index = todos.value.findIndex((todo) => todo.title = event.title)
+  todos.value.splice(index, 1)
+}
+
 </script>
 
 <template>
@@ -21,11 +26,13 @@ function handleAddTodo (event) {
 
   <form class="form" @submit="handleAddTodo">
     <input id="title" type="text" v-model="title" >
-    <div id="submit" @click="handleAddTodo">Add</div>
+    <div id="submit" @click="handleAddTodo">
+      <font-awesome-icon icon="plus"/>
+    </div>
   </form>
 
-  <li class="todos" v-for="todo in todos" v-bind:key="todo.title">
-    <Todo :title="todo.title" :done="todo.done"/>
+  <li class="todos" v-for="(todo, index) in todos" v-bind:key="index">
+    <Todo :title="todo.title" :done="todo.done" @deleteTodo="handleDeleteTodo"/>
   </li>
 </template>
 

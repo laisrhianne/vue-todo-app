@@ -3,8 +3,10 @@ export default {
   props: {
     title: String,
     done: Boolean,
-    handleDelete: function () {}
-  }
+  },
+  emits: [
+    'deleteTodo'
+  ]
 }
 </script>
 
@@ -14,7 +16,7 @@ export default {
       <input id="todo-check" type="checkbox" label="Teste" v-model="done">
       <p id="todo-title" v-bind:class="{ done }">{{title}}</p>
     </div>
-    <font-awesome-icon id="delete-todo" icon="trash" @click="handleDelete" />
+    <font-awesome-icon id="delete-todo" icon="trash" @click="$emit('deleteTodo', { title })" />
   </div>
 </template>
 
@@ -57,7 +59,7 @@ div.todo-container {
 
 
 #delete-todo:active {
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 </style>
