@@ -33,7 +33,7 @@ function handleDeleteTodo (event) {
   <form class="form" @submit="handleAddTodo">
     <input id="title" type="text" v-model="title" >
     <div id="submit" @click="handleAddTodo">
-      <font-awesome-icon icon="plus"/>
+      <font-awesome-icon id="add-icon" icon="plus"/>
     </div>
   </form>
 
@@ -65,7 +65,7 @@ input#title {
 
 div#submit {
   height: 35px;
-  width: 5%;
+  width: 7%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,6 +86,12 @@ div#submit {
 div#submit:active {
   opacity: 0.7;
   box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+
+@media screen and (max-width: 480px) {
+  div#submit {
+    width: 10%;
+  }
 }
 
 li.todos {
