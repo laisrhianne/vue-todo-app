@@ -13,6 +13,14 @@ let todos = ref(storedTodos)
 
 function handleAddTodo (event) {
   event.preventDefault()
+  if (!title.value) {
+    alert('Please type a task')
+    return
+  }
+  if (todos.value.filter((todo) => todo.title === title.value).length) {
+    alert('You already added this task')
+    return
+  }
   todos.value.push({title: title.value, done: false})
   localStorage.setItem('@TodosApp:todos', JSON.stringify(todos.value))
   title.value = ''
